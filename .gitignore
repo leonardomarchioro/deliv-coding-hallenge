@@ -36,19 +36,17 @@ lerna-debug.log*
 
 # FRONT-END
 
-# Logs
+# dependencies
+frontend/node_modules
+frontend/.pnp
+frontend/.pnp.js
 
-front-end/logs
-front-end/*.log
-front-end/npm-debug.log*
-front-end/yarn-debug.log*
-front-end/yarn-error.log*
-front-end/pnpm-debug.log*
-front-end/lerna-debug.log*
+# testing
+frontend/coverage
 
-# compiled output
+# production
+frontend/build
 
-front-end/node_modules
-front-end/dist
-front-end/dist-ssr
-front-end/*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
