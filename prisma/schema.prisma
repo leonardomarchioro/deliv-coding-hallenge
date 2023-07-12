@@ -40,6 +40,7 @@ model Request {
 
 enum RequestStatus {
   awaiting
+  cancelled
   production
   delivery
   completed

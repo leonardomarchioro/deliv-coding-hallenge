@@ -1,7 +1,6 @@
-import { CanActivate, ExecutionContext, HttpStatus, Injectable, RequestMethod } from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, } from "@nestjs/common";
 import { AddressService } from "../../adapter/service/address.service";
-import { DuplicateAddressException } from "../../core/exceotions/duplicate-address.exception";
-import { NotFoundAddressException } from "../../core/exceotions/address-not-found.exception";
+import { NotFoundAddressException } from "../../core/exceptions/address-not-found.exception";
 
 @Injectable()
 export class CheckAddressOwner implements CanActivate {

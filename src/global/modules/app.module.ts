@@ -3,6 +3,7 @@ import { DataBaseModule } from './database.module';
 import { AuthModule } from '../../modules/Authentication/infra/modules/authentication.module';
 import { UsersModule } from '../../modules/Users/infra/modules/users.module';
 import { AddressModule } from '../../modules/Address/infra/module/address.module';
+import { RequestModule } from '../../modules/Request/infra/modules/request.module';
 
 
 @Module({
@@ -10,7 +11,8 @@ import { AddressModule } from '../../modules/Address/infra/module/address.module
     DataBaseModule,
     AuthModule,
     UsersModule,
-    AddressModule
+    AddressModule,
+    RequestModule
   ]
 })
 export class AppModule {}

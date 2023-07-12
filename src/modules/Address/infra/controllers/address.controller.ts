@@ -8,11 +8,12 @@ import { UpdateAddressDto } from "../dto/update-address.dto";
 import { CheckAddressOwner } from "../guards/check-address-owner.guard";
 
 @Controller('address')
+@UseGuards(AuthorizationGuard)
 export class AddressController {
     constructor(private readonly addressService: AddressService) {}
 
     @Post()
-    @UseGuards(AuthorizationGuard, DuplicateAddressGuard)
+    @UseGuards(DuplicateAddressGuard)
     async createAddress(
         @UserId() userId: number,
         @Body() data: CreateAddressDto,
@@ -21,7 +22,6 @@ export class AddressController {
     }
 
     @Get()
-    @UseGuards(AuthorizationGuard)
     async listAddressByUser(
         @UserId() userId: number
     ){
@@ -29,7 +29,7 @@ export class AddressController {
     }
 
     @Patch(":id")
-    @UseGuards(AuthorizationGuard, CheckAddressOwner, DuplicateAddressGuard)
+    @UseGuards(CheckAddressOwner, DuplicateAddressGuard)
     async updateAddress(
         @Body() data: UpdateAddressDto,
         @Param() { id }: { id: string }
@@ -39,7 +39,7 @@ export class AddressController {
     }
 
     @Delete(":id")
-    @UseGuards(AuthorizationGuard, CheckAddressOwner)
+    @UseGuards(CheckAddressOwner)
     async deleteAddress(
         @Param() { id }: { id: string }
     ) {
