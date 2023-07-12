@@ -17,6 +17,9 @@ model User {
   email String @unique
   password String
 
+  requests Request[] @relation(name: "UserRequest")
+  addresses Address[] @relation(name: "UserAddress")
+
   @@map("users")
 }
 
@@ -28,6 +31,9 @@ model Request {
 
   deliveryAddressId Int @map("delivery_address_id")
   deliveryAddress Address @relation(name: "DeliveryAddress", fields: [deliveryAddressId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  userId Int @map("user_id")
+  user User @relation(name: "UserRequest", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("requests")
 }
@@ -48,6 +54,9 @@ model Address {
 
   requests Request[] @relation(name: "DeliveryAddress")
 
+
+  userId Int @map("user_id")
+  user User @relation(name: "UserAddress", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("addresses")
 }
