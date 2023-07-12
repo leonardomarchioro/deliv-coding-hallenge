@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  name String
+  email String @unique
+  password String
+
+  requests Request[] @relation(name: "UserRequest")
+  addresses Address[] @relation(name: "UserAddress")
+
+  @@map("users")
+}
+
+model Request {
+  id Int @id @default(autoincrement())
+
+  clientName String @map("client_name")
+  status RequestStatus @default(awaiting)
+
+  deliveryAddressId Int @map("delivery_address_id")
+  deliveryAddress Address @relation(name: "DeliveryAddress", fields: [deliveryAddressId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  userId Int @map("user_id")
+  user User @relation(name: "UserRequest", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("requests")
+}
+
+enum RequestStatus {
+  awaiting
+  production
+  delivery
+  completed
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  
+  street String
+  number Int
+  district String
+
+  requests Request[] @relation(name: "DeliveryAddress")
+
+
+  userId Int @map("user_id")
+  user User @relation(name: "UserAddress", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("addresses")
+}
