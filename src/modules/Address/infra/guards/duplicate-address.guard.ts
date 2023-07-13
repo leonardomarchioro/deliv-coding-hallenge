@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import { AddressService } from "../../adapter/service/address.service";
-import { DuplicateAddressException } from "../../core/exceotions/duplicate-address.exception";
+import { DuplicateAddressException } from "../../core/exceptions/duplicate-address.exception";
 
 @Injectable()
 export class DuplicateAddressGuard implements CanActivate {
