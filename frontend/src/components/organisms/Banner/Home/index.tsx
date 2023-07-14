@@ -1,10 +1,10 @@
 import React from 'react';
-import { ReactComponent as Vector } from '../../../assets/undraw_on_the_way_re_swjt.svg';
-import { Title, Text } from '../../atoms/';
+import { ReactComponent as Vector } from '../../../../assets/undraw_on_the_way_re_swjt.svg';
+import { Title, Text } from '../../../atoms';
 
 import * as S from './styles';
 
-const Banner: React.FC = () => {
+const HomeBanner: React.FC = () => {
   return (
     <S.Container>
       <S.Div>
@@ -16,4 +16,4 @@ const Banner: React.FC = () => {
   );
 };
 
-export default Banner;
+export default HomeBanner;

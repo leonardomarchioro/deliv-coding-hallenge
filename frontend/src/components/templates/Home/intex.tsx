@@ -1,5 +1,5 @@
 import React from 'react';
-import Banner from '../../organisms/Banner';
+import { Banners } from "../../organisms/"
 import { Button } from '../../atoms';
 
 import * as S from './styles';
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
 
   return (
     <S.Container>
-      <Banner />
+      <Banners.HomeBanner />
       <S.Div>
         <Button onClick={signIn}>Entrar</Button>
         <Button onClick={singUp} color="secondary">

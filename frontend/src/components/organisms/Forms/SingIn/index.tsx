@@ -1,22 +1,22 @@
 import React from 'react';
-import { Inputs } from '../../atoms';
+import { Button, Inputs, RedirectButton, Text, Title } from '../../../atoms';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../hooks';
-import { createUser } from '../../../store/user.store';
-// import { Container } from './styles';
+import { useAppDispatch } from '../../../../hooks';
+import { loginUser } from '../../../../store/auth.store';
+
+import * as S from './styles';
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required('Campo obrigatório'),
   email: yup.string().email('Email inválido').required('Campo obrigatório'),
   password: yup.string().required('Campo obrigatório'),
 });
 
-const SignUpForm: React.FC = () => {
-    const dispatch = useAppDispatch()
+const SignInForm: React.FC = () => {
+  const dispatch = useAppDispatch();
 
   const {
     handleSubmit,
@@ -28,19 +28,13 @@ const SignUpForm: React.FC = () => {
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
-    dispatch(createUser(data))
+    dispatch(loginUser(data));
   };
 
   return (
-    <div>
+    <S.Container>
+      <Title.H2>Login</Title.H2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Inputs.GeneralInput
-          label="Nome"
-          name="name"
-          placeholder="Digite seu nome"
-          error={errors}
-          register={register}
-        />
         <Inputs.GeneralInput
           label="Email"
           name="email"
@@ -55,10 +49,16 @@ const SignUpForm: React.FC = () => {
           error={errors}
           register={register}
         />
-        <button type="submit">registrar-se</button>
+        <Button color='confirm' type="submit">Entrar</Button>
       </form>
-    </div>
+      <S.BottomContainer>
+      <Text.Span className='text-span'>
+        Ainda não possui uma conta?
+      </Text.Span>
+      <RedirectButton path='/auth?action=sign-up'>Cadastrar-se</RedirectButton>
+      </S.BottomContainer>
+    </S.Container>
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

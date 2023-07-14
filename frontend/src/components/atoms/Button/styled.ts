@@ -18,7 +18,7 @@ export const Container = styled.div<{ color: string }>`
           return theme.background.emerald;
 
         case "confirm":
-            return theme.colors.success
+            return theme.background.light2
         
         case "cancel":
             return theme.colors.error

@@ -1,5 +1,5 @@
-import SignUpForm from "./singUp"
-import SignInForm from "./singIn"
+import SignUpForm from "./SingUp"
+import SignInForm from "./SingIn"
 
 export default {
     SignUpForm,
