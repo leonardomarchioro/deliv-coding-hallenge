@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,19 +8,28 @@ import {
 import HomePage from '../pages/Home';
 import AuthPage from '../pages/Auth';
 import DashPage from '../pages/Dash';
-import { useAuth } from '../hooks/useAuth';
+import { checkToken, useAuth } from '../store/auth.store';
+import { useAppDispatch } from '../hooks';
 
 type PrivateRouteProps = {
   children: React.ReactNode;
 };
 const AppRouter: React.FC = () => {
   const { token } = useAuth();
+  const dispatch = useAppDispatch()
 
   const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) =>
     token ? <>{children}</> : <Navigate to="/" />;
 
   const PublicRoute: React.FC<PrivateRouteProps> = ({ children }) =>
   !token ? <>{children}</> : <Navigate to="/dash" />;
+
+  useEffect(() => {
+    if(token){
+      dispatch(checkToken())
+    }
+  }, [dispatch])
+
 
   return (
     <Router>
