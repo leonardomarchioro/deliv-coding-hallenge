@@ -11,7 +11,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 
 const Button: React.FC<ButtonProps> = ({ children, className, color, ...rest }) => {
-    console.log(color)
   return (
     <S.Container color={color || "primary"} className={className}>
       <button {...rest}>{children}</button>

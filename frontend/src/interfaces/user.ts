@@ -11,6 +11,6 @@ export interface ICreateUser {
 }
 
 export interface ILogin {
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
 }
