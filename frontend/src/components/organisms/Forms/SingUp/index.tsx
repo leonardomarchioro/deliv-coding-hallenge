@@ -1,38 +1,34 @@
 import React from 'react';
-import { Inputs } from '../../../atoms';
+import { Button, Inputs, RedirectButton, Text, Title } from '../../../atoms';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import Validation from "../../../../validations"
 
 import { useAppDispatch } from '../../../../hooks';
 import { createUser } from '../../../../store/user.store';
-// import { Container } from './styles';
 
-const validationSchema = yup.object().shape({
-  name: yup.string().required('Campo obrigatório'),
-  email: yup.string().email('Email inválido').required('Campo obrigatório'),
-  password: yup.string().required('Campo obrigatório'),
-});
+import * as S from './styles';
+
 
 const SignUpForm: React.FC = () => {
-    const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(Validation.User.createSchema),
   });
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    dispatch(createUser(data))
+    dispatch(createUser(data));
   };
 
   return (
-    <div>
+    <S.Container>
+      <Title.H2>Cadastrar-se</Title.H2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Inputs.GeneralInput
           label="Nome"
@@ -55,9 +51,15 @@ const SignUpForm: React.FC = () => {
           error={errors}
           register={register}
         />
-        <button type="submit">registrar-se</button>
+        <Button color="confirm" type="submit">
+          Registrar-se
+        </Button>
       </form>
-    </div>
+      <S.BottomContainer>
+        <Text.Span className="text-span">Já possui uma conta?</Text.Span>
+        <RedirectButton path="/auth?action=sign-in">Entrar</RedirectButton>
+      </S.BottomContainer>
+    </S.Container>
   );
 };
 

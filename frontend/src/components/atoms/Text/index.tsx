@@ -22,4 +22,6 @@ const Span: React.FC<IProps> = ({ children, className }) => {
   );
 };
 
-export default { P, Span };
+const Text = { P, Span };
+
+export default Text;

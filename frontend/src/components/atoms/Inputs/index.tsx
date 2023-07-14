@@ -63,4 +63,6 @@ const PasswordInput: React.FC<InputProps> = ({
   );
 };
 
-export default { GeneralInput, PasswordInput };
+const Inputs = { GeneralInput, PasswordInput };
+
+export default  Inputs

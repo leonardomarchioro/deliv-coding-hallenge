@@ -1,8 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import Cookies from 'js-cookie'
-
-const token = Cookies.get('authToken') || null
-
 
 const BackEndHTTP = axios.create({
     baseURL: 'http://localhost:4000/',
@@ -13,7 +9,7 @@ const BackEndHTTP = axios.create({
 })
 
 
-class RequestHTTP {
+class Http {
     async post(path: string, data: any, config?: AxiosRequestConfig<any>){
         return BackEndHTTP.post(path, data, config).then(({ data }) => data).catch(({ response }) => console.log(response))
     }
@@ -24,4 +20,6 @@ class RequestHTTP {
     }
 }
 
-export default new RequestHTTP()
+const RequestHTTP = new Http()
+
+export default RequestHTTP;

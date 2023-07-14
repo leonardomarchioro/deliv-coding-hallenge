@@ -37,9 +37,11 @@ const H4: React.FC<IProps> = ({ children, className }) => {
   );
 };
 
-export default {
+const Title = {
   H1,
   H2,
   H3,
   H4,
 };
+
+export default Title;

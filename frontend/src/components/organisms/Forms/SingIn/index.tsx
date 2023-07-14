@@ -3,17 +3,12 @@ import { Button, Inputs, RedirectButton, Text, Title } from '../../../atoms';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import Validations from '../../../../validations';
 
 import { useAppDispatch } from '../../../../hooks';
 import { loginUser } from '../../../../store/auth.store';
 
 import * as S from './styles';
-
-const validationSchema = yup.object().shape({
-  email: yup.string().email('Email inválido').required('Campo obrigatório'),
-  password: yup.string().required('Campo obrigatório'),
-});
 
 const SignInForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -23,11 +18,10 @@ const SignInForm: React.FC = () => {
     register,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(Validations.Auth.loginSchema),
   });
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
     dispatch(loginUser(data));
   };
 
@@ -49,13 +43,15 @@ const SignInForm: React.FC = () => {
           error={errors}
           register={register}
         />
-        <Button color='confirm' type="submit">Entrar</Button>
+        <Button color="confirm" type="submit">
+          Entrar
+        </Button>
       </form>
       <S.BottomContainer>
-      <Text.Span className='text-span'>
-        Ainda não possui uma conta?
-      </Text.Span>
-      <RedirectButton path='/auth?action=sign-up'>Cadastrar-se</RedirectButton>
+        <Text.Span className="text-span">Ainda não possui uma conta?</Text.Span>
+        <RedirectButton path="/auth?action=sign-up">
+          Cadastrar-se
+        </RedirectButton>
       </S.BottomContainer>
     </S.Container>
   );

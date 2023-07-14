@@ -1,6 +1,9 @@
 import HomeBanner from "./Home";
 import AuthBanner from "./Auth";
-export default {
+
+const Banner = {
     HomeBanner,
     AuthBanner
-}
+};
+
+export default Banner;
