@@ -35,6 +35,10 @@ const theme = {
     mint: '#1B9C85',
     sage: '#688F4E',
   },
+  colors: {
+    success: '#39FF14',
+    error: '#FF0002'
+  }
 };
 
 export default theme;
