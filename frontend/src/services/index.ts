@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios';
+import { toast } from "react-toastify";
 
 const BackEndHTTP = axios.create({
     baseURL: 'http://localhost:4000/',
@@ -10,8 +11,10 @@ const BackEndHTTP = axios.create({
 
 
 class Http {
-    async post(path: string, data: any, config?: AxiosRequestConfig<any>){
-        return BackEndHTTP.post(path, data, config).then(({ data }) => data).catch(({ response }) => console.log(response))
+    async post(path: string, data: any, config?: AxiosRequestConfig<any>, successMessage?: string){
+        return BackEndHTTP.post(path, data, config).then(({ data }) => { 
+            successMessage && toast.success(successMessage)
+            return data}).catch(({ response }) => toast.error(response.data.message))
     }
 
     async get(path: string, config?: AxiosRequestConfig<any>) {
@@ -19,12 +22,16 @@ class Http {
 
     }
 
-    async patch(path: string, data: any, config?: AxiosRequestConfig<any>) {
-        return BackEndHTTP.patch(path, data, config).then(({ data }) => data).catch(({ response }) => console.log(response))
+    async patch(path: string, data: any, config?: AxiosRequestConfig<any>, successMessage?: string) {
+        return BackEndHTTP.patch(path, data, config).then(({ data }) => { 
+            successMessage && toast.success(successMessage)
+            return data}).catch(({ response }) => toast.error(response.data.message))
     }
 
-    async delete(path: string, config?: AxiosRequestConfig<any>) {
-        return BackEndHTTP.delete(path, config).then(({ data }) => data).catch(({ response }) => console.log(response))
+    async delete(path: string, config?: AxiosRequestConfig<any>, successMessage?: string) {
+        return BackEndHTTP.delete(path, config).then(({ data }) => { 
+            successMessage && toast.success(successMessage)
+            return data}).catch(({ response }) => toast.error(response.data.message))
 
     }
 }

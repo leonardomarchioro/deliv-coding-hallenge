@@ -13,7 +13,9 @@ export const createRequest = createAsyncThunk<IRequest, ICreateRequest>(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      },
+      "Novo pedido registrado"
+      );
       dispatch(listRequests())
       return response;
     },
@@ -55,21 +57,9 @@ export const createRequest = createAsyncThunk<IRequest, ICreateRequest>(
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    },
+    "Pedido atualizado"
+    );
     dispatch(listRequests())
     return response;
   });
-  
-  export const deleteRequest = createAsyncThunk<IRequest, number>(
-    'request/delete',
-    async (id, { getState, dispatch }) => {
-      const token = selectAuthToken(getState() as RootState);
-      const response = await RequestHTTP.delete(`request/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      dispatch(listRequests())
-      return response;
-    },
-  );

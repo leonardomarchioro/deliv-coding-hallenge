@@ -8,7 +8,7 @@ import { setUser } from "../store/user.store";
 export const createUser = createAsyncThunk<IUser, ICreateUser>(
     'user/create',
     async (data) => {
-      return RequestHTTP.post('users', data);
+      return RequestHTTP.post('users', data, {}, "Usuários criado");
     },
   );
   

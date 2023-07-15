@@ -12,8 +12,10 @@ export const createAddress = createAsyncThunk<IAddress, ICreateAddress>(
       const response = await RequestHTTP.post('address', data, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-      });
+        }
+      },
+      "Endereço registrado"
+      );
       dispatch(listAddress())
       return response;
     },
@@ -42,7 +44,9 @@ export const createAddress = createAsyncThunk<IAddress, ICreateAddress>(
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    },
+    "Endereço atualizado"
+    );
     dispatch(listAddress())
     return response;
   });
@@ -55,7 +59,9 @@ export const createAddress = createAsyncThunk<IAddress, ICreateAddress>(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      },
+      "Endereço deletado"
+      );
       dispatch(listAddress())
       return response;
     },
