@@ -1,9 +1,11 @@
 import HomeBanner from "./Home";
 import AuthBanner from "./Auth";
+import DashBanner from "./Dash"
 
 const Banner = {
     HomeBanner,
-    AuthBanner
+    AuthBanner,
+    DashBanner
 };
 
 export default Banner;

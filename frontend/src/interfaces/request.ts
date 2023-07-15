@@ -14,10 +14,10 @@ export interface ICreateRequest {
 }
 
 export interface IUpdateRequest {
-    clientName?: string;
-    deliveryAddressId?: number;
-    status?: RequestStatus;
-  }
+  clientName?: string;
+  deliveryAddressId?: number;
+  status?: RequestStatus;
+}
 
 export const RequestStatus = {
   awaiting: 'awaiting',
@@ -25,6 +25,18 @@ export const RequestStatus = {
   production: 'production',
   delivery: 'delivery',
   completed: 'completed',
+};
+
+type StatusTranslate = {
+  [key in RequestStatus]: string;
+};
+
+export const StatusTranslate: StatusTranslate = {
+  awaiting: 'Aguardando',
+  cancelled: 'Cancelado',
+  production: 'Em produção',
+  delivery: 'Entrega',
+  completed: 'Finalizado',
 };
 
 export type RequestStatus = (typeof RequestStatus)[keyof typeof RequestStatus];

@@ -32,6 +32,19 @@ export const createRequest = createAsyncThunk<IRequest, ICreateRequest>(
       return response;
     },
   );
+
+  export const getRequest = createAsyncThunk<IRequest, number>(
+    'request/get',
+    async (id, { getState }) => {
+      const token = selectAuthToken(getState() as RootState);
+      const response = await RequestHTTP.get(`request/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response;
+    },
+  );
   
   export const updateRequest = createAsyncThunk<
     IRequest,

@@ -1,9 +1,11 @@
 import Banners from "./Banner"
-import GeneralContainer from "./GeneralContainer"
 import Forms from "./Forms"
+import Header from "./Header"
+import Main from "./Main"
 
 export {
     Banners,
-    GeneralContainer,
-    Forms
+    Forms,
+    Header,
+    Main
 }
