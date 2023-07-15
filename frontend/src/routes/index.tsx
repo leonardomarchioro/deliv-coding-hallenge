@@ -8,8 +8,9 @@ import {
 import HomePage from '../pages/Home';
 import AuthPage from '../pages/Auth';
 import DashPage from '../pages/Dash';
-import { checkToken, useAuth } from '../store/auth.store';
+import { useAuth } from '../store/auth.store';
 import { useAppDispatch } from '../hooks';
+import { checkToken } from '../services/auth.service';
 
 type PrivateRouteProps = {
   children: React.ReactNode;
@@ -28,7 +29,7 @@ const AppRouter: React.FC = () => {
     if(token){
       dispatch(checkToken())
     }
-  }, [dispatch])
+  }, [dispatch, token])
 
 
   return (

@@ -20,7 +20,7 @@ class Http {
     }
 
     async patch(path: string, data: any, config?: AxiosRequestConfig<any>) {
-        return BackEndHTTP.patch(path, config).then(({ data }) => data).catch(({ response }) => console.log(response))
+        return BackEndHTTP.patch(path, data, config).then(({ data }) => data).catch(({ response }) => console.log(response))
     }
 
     async delete(path: string, config?: AxiosRequestConfig<any>) {

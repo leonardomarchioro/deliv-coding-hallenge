@@ -6,9 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Validation from "../../../../validations"
 
 import { useAppDispatch } from '../../../../hooks';
-import { createUser } from '../../../../store/user.store';
 
 import * as S from './styles';
+import { createUser } from '../../../../services/user.service';
 
 
 const SignUpForm: React.FC = () => {
