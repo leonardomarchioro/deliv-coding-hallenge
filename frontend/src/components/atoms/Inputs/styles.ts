@@ -19,7 +19,7 @@ export const InputContainer = styled.div<{error: boolean}>`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 0.5rem;
 
-  > input {
+  > input, select {
     width: 100%;
     padding: 0px;
     border: none;
@@ -31,6 +31,7 @@ export const InputContainer = styled.div<{error: boolean}>`
         color: ${({ theme, error = false }) => error ? theme.colors.error : theme.colors.grey }
     }
   }
+  
 `;
 export const ErrorContainer = styled.div`
   height: 1.5rem;
@@ -52,3 +53,4 @@ export const ToogleContainer = styled.div`
     color: ${({ theme }) => theme.text.dark};
   }
 `;
+

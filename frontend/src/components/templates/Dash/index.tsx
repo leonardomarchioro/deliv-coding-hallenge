@@ -11,32 +11,52 @@ import {
 import * as S from './styles';
 import { useRequest } from '../../../store/request.store';
 import { StatusTranslate } from '../../../interfaces/request';
+import ModalsDash from '../../organisms/ModalsDash';
+import { useAppDispatch } from '../../../hooks';
+import { setModal } from '../../../store/modals.store';
 
 const Dashboard: FC = () => {
   const requests = useRequest();
+  const dispatch = useAppDispatch();
 
   return (
-    <S.Container>
-      <Header className="dash-header">
-        <HelloUser />
-        <LogoutButton />
-      </Header>
-      <Main>
-        <RequestsHeader />
-        {requests.length ? (
-          <TableList columns={['ID', 'Cliente', 'Status']}>
-            {requests.map(({ id, clientName, status }) => (
-              <TableRow
-                key={id}
-                data={{ id, clientName, status: StatusTranslate[status] }}
-              />
-            ))}
-          </TableList>
-        ) : (
-          <Banners.DashBanner />
-        )}
-      </Main>
-    </S.Container>
+    <>
+      <ModalsDash />
+      <S.Container>
+        <Header className="dash-header">
+          <HelloUser />
+          <LogoutButton />
+        </Header>
+        <Main>
+          <RequestsHeader />
+          {requests.length ? (
+            <TableList columns={['ID', 'Cliente', 'Status']}>
+              {requests.map((request) => (
+                <TableRow
+                  key={request.id}
+                  data={{
+                    id: request.id,
+                    clientName: request.clientName,
+                    status: StatusTranslate[request.status],
+                  }}
+                  onClick={() =>
+                    dispatch(
+                      setModal({
+                        show: true,
+                        type: 'request/info',
+                        data: request,
+                      }),
+                    )
+                  }
+                />
+              ))}
+            </TableList>
+          ) : (
+            <Banners.DashBanner />
+          )}
+        </Main>
+      </S.Container>
+    </>
   );
 };
 

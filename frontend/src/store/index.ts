@@ -3,13 +3,15 @@ import UserSlice from "./user.store";
 import AuthSlice from "./auth.store";
 import AddressSlice from "./address.store";
 import RequestsSlice from "./request.store";
+import ModalsSlice from "./modals.store";
 
 const store = configureStore({
     reducer: {
         users: UserSlice.reducer,
         auth: AuthSlice.reducer,
         address: AddressSlice.reducer,
-        request: RequestsSlice.reducer
+        request: RequestsSlice.reducer,
+        modal: ModalsSlice.reducer
     }
 })
 

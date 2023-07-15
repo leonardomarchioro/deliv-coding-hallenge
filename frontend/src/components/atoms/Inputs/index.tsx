@@ -63,6 +63,54 @@ const PasswordInput: React.FC<InputProps> = ({
   );
 };
 
-const Inputs = { GeneralInput, PasswordInput };
+type Option = {
+  value: number;
+  label: string;
+};
 
-export default  Inputs
+type SelectInputProps = {
+  options: Option[];
+  value?: number;
+  className?: string;
+  label?: string;
+  error?: FieldErrors<any>;
+  name: string;
+  placeholder?: string;
+  register: UseFormRegister<any>;
+  onChange: (selectedValue: string) => void;
+};
+
+const SelectInput: React.FC<SelectInputProps> = ({
+  onChange,
+  options,
+  value,
+  className,
+  label,
+  error = {},
+  name,
+  register,
+}) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    onChange(selectedValue);
+  };
+
+  return (
+    <S.Container className={className}>
+      {label && <label>{label}</label>}
+      <S.InputContainer error={!!error[name]}>
+        <select {...register(name)} value={value} onChange={handleChange}>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </S.InputContainer>
+    </S.Container>
+  );
+};
+
+const Inputs = { GeneralInput, PasswordInput, SelectInput };
+
+export default Inputs;

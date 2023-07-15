@@ -5,11 +5,12 @@ type TProps = {
   data: {
     [key: string]: string | number;
   };
+  onClick?: () => void;
 };
 
-const TableRow: FC<TProps> = ({ data }) => {
+const TableRow: FC<TProps> = ({ data, onClick = () => {} }) => {
   return (
-    <tr>
+    <tr onClick={onClick}>
       {Object.values(data).map((value, i) => (
         <td key={i}>{value}</td>
       ))}
