@@ -7,4 +7,8 @@ export class CreateRequestDto implements CreateRequestModel {
 
     @IsNumber()
     deliveryAddressId: number
+
+    constructor(builder: CreateRequestModel) {
+        Object.assign(this, builder)
+      }
 }

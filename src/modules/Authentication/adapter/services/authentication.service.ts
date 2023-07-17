@@ -20,7 +20,7 @@ export class AuthenticationService {
         private readonly decodeUserTokenFeature: DecodedUserTokenFeature
     ){}
 
-    async signIn({ email, password }: SignInDto){
+    async signIn({ email, password }: SignInDto): Promise<SignedUserDto>{
         const user = await this.findUserByParam.perform({ email });
 
         if(!user){

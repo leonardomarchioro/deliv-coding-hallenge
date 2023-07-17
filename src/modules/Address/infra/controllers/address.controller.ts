@@ -34,7 +34,6 @@ export class AddressController {
         @Body() data: UpdateAddressDto,
         @Param() { id }: { id: string }
     ) {
-        console.log(id)
         return this.addressService.updateAddress(data, Number(id));
     }
 
@@ -43,7 +42,6 @@ export class AddressController {
     async deleteAddress(
         @Param() { id }: { id: string }
     ) {
-        console.log(id)
         return this.addressService.deleteAddress(Number(id));
     }
     
