@@ -1,14 +1,9 @@
-FROM node
+FROM node as builder
 
-# set working directory
-WORKDIR /client
+WORKDIR /app
 
-# install client dependencies
 COPY package*.json ./
 
-RUN yarn install 
+COPY . ./
 
-EXPOSE 3000
-
-# start client
-CMD ["yarn", "start"]
+CMD ["npm", "run", "start"]

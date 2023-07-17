@@ -3,26 +3,36 @@ version: '3'
 services:
   backend:
     build: .
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?schema=public
     ports:
-      - '3000:3000'
+      - '4000:4000'
     depends_on:
       - database
+    command: sh -c "npm run run:migrate && npm run start:prod"
+    volumes:
+      - ./prisma:/home/node/prisma
 
   # frontend:
   #   build: ./frontend
   #   ports:
-  #     - '5173:5173'
+  #     - '3000:3000'
   #   volumes:
   #     - .:/client
   #     - .:/client/node_modules
-
   #   depends_on:
   #     - backend
 
   database:
     image: postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    restart: always
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    env_file:
+      - .env
     ports:
       - '5432:5432'
+volumes:
+  dbdata:
