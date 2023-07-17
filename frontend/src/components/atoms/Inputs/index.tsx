@@ -23,7 +23,7 @@ const GeneralInput: React.FC<InputProps> = ({
   return (
     <S.Container className={className}>
       {label && <label>{label}</label>}
-      <S.InputContainer error={!!error[name]}>
+      <S.InputContainer error={error[name] && 'error'}>
         <input {...register(name)} {...rest} />
       </S.InputContainer>
       <S.ErrorContainer>
@@ -46,7 +46,7 @@ const PasswordInput: React.FC<InputProps> = ({
   return (
     <S.Container className={className}>
       {label && <label>{label}</label>}
-      <S.InputContainer error={!!error[name]}>
+      <S.InputContainer error={error[name] && 'error'}>
         <input type={type} {...register(name)} {...rest} />
         <S.ToogleContainer>
           {type === 'text' ? (
@@ -64,20 +64,20 @@ const PasswordInput: React.FC<InputProps> = ({
 };
 
 type Option = {
-  value: number;
+  value: number | string;
   label: string;
 };
 
 type SelectInputProps = {
   options: Option[];
-  value?: number;
+  value?: number | string;
   className?: string;
   label?: string;
   error?: FieldErrors<any>;
   name: string;
   placeholder?: string;
   register: UseFormRegister<any>;
-  onChange: (selectedValue: string) => void;
+  onChange: (selectedValue: string | number) => void;
 };
 
 const SelectInput: React.FC<SelectInputProps> = ({
@@ -98,7 +98,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   return (
     <S.Container className={className}>
       {label && <label>{label}</label>}
-      <S.InputContainer error={!!error[name]}>
+      <S.InputContainer error={error[name] && 'error'}>
         <select {...register(name)} value={value} onChange={handleChange}>
           {options.map((option) => (
             <option key={option.value} value={option.value}>

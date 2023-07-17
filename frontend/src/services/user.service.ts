@@ -4,11 +4,18 @@ import { ICreateUser, IUser } from "../interfaces/user";
 import { RootState } from "../store";
 import { selectAuthToken } from "../store/auth.store";
 import { setUser } from "../store/user.store";
+import { loginUser } from "./auth.service";
 
 export const createUser = createAsyncThunk<IUser, ICreateUser>(
     'user/create',
-    async (data) => {
-      return RequestHTTP.post('users', data, {}, "Usuários criado");
+    async (data, { dispatch }) => {
+      const response = await RequestHTTP.post('users', data, {}, "Usuários criado");
+      
+      if(response.id){
+        dispatch(loginUser(data))
+      }
+
+      return response
     },
   );
   

@@ -21,6 +21,12 @@ export const Container = styled.div`
       bottom: 1rem;
       align-self: center;
     }
+
+    .create-button {
+      height: 2rem;
+      width: 80%;
+      align-self: center;
+    }
   }
 `;
 

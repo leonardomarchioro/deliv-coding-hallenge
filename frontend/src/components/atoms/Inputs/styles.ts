@@ -10,12 +10,12 @@ export const Container = styled.div`
   }
 `;
 
-export const InputContainer = styled.div<{error: boolean}>`
+export const InputContainer = styled.div<{error?: string}>`
   display: flex;
   justify-content: space-between;
 
   padding: 0.5rem;
-  border: 0.1rem solid ${({ theme, error = false }) => error ? theme.colors.error : theme.background.pastel};
+  border: 0.1rem solid ${({ theme, error }) => error === 'error' ? theme.colors.error : theme.background.pastel};
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 0.5rem;
 
@@ -28,7 +28,7 @@ export const InputContainer = styled.div<{error: boolean}>`
 
     &::placeholder{
         font-weight: 500;
-        color: ${({ theme, error = false }) => error ? theme.colors.error : theme.colors.grey }
+        color: ${({ theme, error }) => error === 'error' ? theme.colors.error : theme.colors.grey }
     }
   }
   

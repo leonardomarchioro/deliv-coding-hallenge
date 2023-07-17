@@ -8,7 +8,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    gap: 1.5rem;
     
     .button-edit {
         height: 2rem;

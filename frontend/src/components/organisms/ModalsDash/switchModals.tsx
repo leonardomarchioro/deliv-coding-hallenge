@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import Modals from '../Modals';
-//import * as S from './styles'
 
 type TProps = {
   type: string;
@@ -12,9 +11,9 @@ const SwitchModals: FC<TProps> = ({ type, data }) => {
     case 'request/info':
       return <Modals.InfoRequest request={data} />;
     case 'request/create':
-      return <Modals.CreateRequest />;
+      return <Modals.CreateOrUpdateRequest />;
     case 'request/update':
-      return <Modals.UpdateRequest request={data}/>;
+      return <Modals.CreateOrUpdateRequest isEdit request={data}/>;
     case 'address/create':
         return <Modals.CreateAddress />;
     default:

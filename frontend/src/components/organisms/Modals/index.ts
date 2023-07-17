@@ -1,11 +1,9 @@
-import CreateRequest from "./CreateRequest"
-import UpdateRequest from "./UpdateRequest";
+import CreateOrUpdateRequest from "./CreateOrUpdateRequest"
 import InfoRequest from "./InfoRequest";
 import CreateAddress from "./CreateAddress";
 
 const Modals = {
-    CreateRequest,
-    UpdateRequest,
+    CreateOrUpdateRequest,
     InfoRequest,
     CreateAddress
 }
