@@ -39,7 +39,7 @@ const CreateAddress: FC = () => {
   const onSubmit = async (data: any) => {
     const { payload }: { payload: any } = await dispatch(createAddress(data));
 
-    if (payload.id) handleBackModal();
+    if (payload?.id) handleBackModal();
   };
 
   return (
