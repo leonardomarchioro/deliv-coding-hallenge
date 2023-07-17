@@ -18,7 +18,7 @@ class Http {
     }
 
     async get(path: string, config?: AxiosRequestConfig<any>) {
-        return BackEndHTTP.get(path, config).then(({ data }) => data).catch(({ response }) => console.log(response))
+        return BackEndHTTP.get(path, config).then(({ data }) => data).catch()
 
     }
 
