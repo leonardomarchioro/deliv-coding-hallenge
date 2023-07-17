@@ -14,4 +14,8 @@ export class UpdateRequestDto implements UpdateRequestModel {
     @IsEnum(RequestStatus)
     @IsOptional()
     status: RequestStatus
+
+    constructor(builder: UpdateRequestModel) {
+        Object.assign(this, builder)
+      }
 }
