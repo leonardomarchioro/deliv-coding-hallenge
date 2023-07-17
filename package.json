@@ -21,7 +21,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "run:migrate": "prisma migrate deploy",
     "migrate": "prisma migrate dev",
-    "front:install": "cd frontend && yarn install"
+    "front:install": "cd frontend && yarn install",
+    "front:test": "cd frontend && yarn test"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
