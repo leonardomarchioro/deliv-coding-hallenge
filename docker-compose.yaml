@@ -15,15 +15,15 @@ services:
     volumes:
       - ./prisma:/home/node/prisma
 
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - '3000:3000'
-  #   volumes:
-  #     - .:/client
-  #     - .:/client/node_modules
-  #   depends_on:
-  #     - backend
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/client
+      - .:/client/node_modules
+    depends_on:
+      - backend
 
   database:
     image: postgres
