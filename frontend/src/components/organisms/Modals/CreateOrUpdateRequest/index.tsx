@@ -63,7 +63,6 @@ const CreateOrUpdateRequest: FC<TProps> = ({ isEdit, request }) => {
       if (payload.id) hgandleCloseModal();
     } else {
       const { payload }: { payload: any } = await dispatch(createRequest(data));
-
       if (payload.id) hgandleCloseModal();
     }
   };
@@ -85,7 +84,7 @@ const CreateOrUpdateRequest: FC<TProps> = ({ isEdit, request }) => {
       setValue('deliveryAddressId', request.deliveryAddress.id);
       setValue('status', request.status);
     }
-  }, [request, isEdit]);
+  }, [request, isEdit, setValue]);
 
   return (
     <S.Container>
@@ -98,7 +97,7 @@ const CreateOrUpdateRequest: FC<TProps> = ({ isEdit, request }) => {
           error={errors}
           register={register}
         />
-        {address.length ? (
+        {address && address.length ? (
           <S.AddressContainer>
             <Inputs.SelectInput
               className="select-input"
@@ -150,7 +149,7 @@ const CreateOrUpdateRequest: FC<TProps> = ({ isEdit, request }) => {
   );
 };
 
-const transformAddressInSelectObject = (arr: IAddress[]) => {
+const transformAddressInSelectObject = (arr: IAddress[] = []) => {
   return arr.map(({ id, street, district, number }) => ({
     value: id,
     label: `Rua ${street} n° ${number} - ${district}`,
