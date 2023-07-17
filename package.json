@@ -77,8 +77,8 @@
     },
     "collectCoverageFrom": [
       "src/modules/**/adapter/**/*.ts",
-      "src/modules/**/infra/controllers/*.ts",
-      "src/module/**/infra/modules/*.ts",
+      "src/modules/**/infra/**/*.ts",
+      "src/modules/**/core/**/*.ts",
       "src/global/modules/*.ts"
     ],
     "testPathIgnorePatterns": [
