@@ -77,7 +77,7 @@
     },
     "collectCoverageFrom": [
       "src/modules/**/adapter/**/*.ts",
-      "src/modules/**/infra/**/*.ts",
+      "src/modules/**/infra/modules/*.ts",
       "src/modules/**/core/**/*.ts",
       "src/global/modules/*.ts"
     ],
